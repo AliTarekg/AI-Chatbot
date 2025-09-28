@@ -1,12 +1,6 @@
-/**
- * Configuration management for the AI Chatbot
- * Centralizes all environment variables and configuration settings
- */
-
 require('dotenv').config();
 
 const config = {
-  // Server Configuration
   server: {
     port: parseInt(process.env.PORT) || 3000,
     host: process.env.HOST || 'localhost',
@@ -16,28 +10,24 @@ const config = {
       credentials: true
     }
   },
-  // Ollama Configuration
   ollama: {
     baseUrl: process.env.OLLAMA_BASE_URL || 'http://localhost:11434',
     model: process.env.OLLAMA_MODEL || 'llama3.2:3b',
     embedModel: process.env.OLLAMA_EMBED_MODEL || 'nomic-embed-text',
     timeout: parseInt(process.env.OLLAMA_TIMEOUT) || 30000,
     options: {
-      // Optimized for faster responses
       temperature: parseFloat(process.env.OLLAMA_TEMPERATURE) || 0.1,
       top_p: parseFloat(process.env.OLLAMA_TOP_P) || 0.3,
       top_k: parseInt(process.env.OLLAMA_TOP_K) || 3,
-      num_predict: parseInt(process.env.OLLAMA_NUM_PREDICT) || 100, // Shorter responses for greetings
-      num_ctx: parseInt(process.env.OLLAMA_NUM_CTX) || 512, // Smaller context for speed
+      num_predict: parseInt(process.env.OLLAMA_NUM_PREDICT) || 100,
+      num_ctx: parseInt(process.env.OLLAMA_NUM_CTX) || 512,
       repeat_penalty: parseFloat(process.env.OLLAMA_REPEAT_PENALTY) || 1.1,
-      num_thread: -1, // Use all available threads
-      mirostat: 0, // Disable for speed
+      num_thread: -1,
+      mirostat: 0,
       tfs_z: 1.0,
       seed: -1
     }
   },
-
-  // RAG Configuration
   rag: {
     dataPath: process.env.RAG_DATA_PATH || './data',
     chunkSize: parseInt(process.env.RAG_CHUNK_SIZE) || 1000,
@@ -45,21 +35,16 @@ const config = {
     topK: parseInt(process.env.RAG_TOP_K) || 4,
     minScore: parseFloat(process.env.RAG_MIN_SCORE) || 0
   },
-
-  // Logging Configuration
   logging: {
     level: process.env.LOG_LEVEL || 'info',
     format: process.env.LOG_FORMAT || 'combined'
   },
-
-  // Company Information
   company: {
     name: process.env.COMPANY_NAME || 'ATG Solutions',
     domain: process.env.COMPANY_DOMAIN || 'technology consulting'
   }
 };
 
-// Validation
 function validateConfig() {
   const required = [
     'server.port',
