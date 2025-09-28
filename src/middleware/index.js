@@ -1,13 +1,6 @@
-/**
- * Express middleware for various functionalities
- */
-
 const logger = require('../utils/logger');
 const { ValidationError, AppError } = require('../utils/errors');
 
-/**
- * Request logging middleware
- */
 const requestLogger = (req, res, next) => {
   const startTime = Date.now();
   const { method, url, ip } = req;
@@ -35,9 +28,6 @@ const requestLogger = (req, res, next) => {
   next();
 };
 
-/**
- * Error handling middleware
- */
 const errorHandler = (error, req, res, next) => {
   logger.error('Request error', {
     error: error.message,
@@ -47,12 +37,10 @@ const errorHandler = (error, req, res, next) => {
     method: req.method
   });
 
-  // Default error response
   let statusCode = 500;
   let code = 'INTERNAL_ERROR';
   let message = 'An internal server error occurred';
 
-  // Handle known error types
   if (error instanceof ValidationError) {
     statusCode = error.statusCode;
     code = error.code;
@@ -71,12 +59,10 @@ const errorHandler = (error, req, res, next) => {
     }
   };
 
-  // Add field information for validation errors
   if (error instanceof ValidationError && error.field) {
     response.error.field = error.field;
   }
 
-  // Add stack trace in development
   if (process.env.NODE_ENV === 'development') {
     response.error.stack = error.stack;
   }
@@ -84,9 +70,6 @@ const errorHandler = (error, req, res, next) => {
   res.status(statusCode).json(response);
 };
 
-/**
- * Rate limiting middleware (simple in-memory implementation)
- */
 const createRateLimiter = (windowMs = 15 * 60 * 1000, maxRequests = 100) => {
   const requests = new Map();
 
@@ -95,7 +78,6 @@ const createRateLimiter = (windowMs = 15 * 60 * 1000, maxRequests = 100) => {
     const now = Date.now();
     const windowStart = now - windowMs;
 
-    // Clean old entries
     if (requests.has(clientId)) {
       const clientRequests = requests.get(clientId).filter(time => time > windowStart);
       requests.set(clientId, clientRequests);
@@ -127,9 +109,6 @@ const createRateLimiter = (windowMs = 15 * 60 * 1000, maxRequests = 100) => {
   };
 };
 
-/**
- * CORS middleware with proper configuration
- */
 const corsHandler = (req, res, next) => {
   const { config } = require('../config');
   
@@ -145,9 +124,6 @@ const corsHandler = (req, res, next) => {
   }
 };
 
-/**
- * Security headers middleware
- */
 const securityHeaders = (req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -157,9 +133,6 @@ const securityHeaders = (req, res, next) => {
   next();
 };
 
-/**
- * Health check middleware for quick responses
- */
 const healthCheck = (req, res, next) => {
   if (req.path === '/ping') {
     return res.json({ 
