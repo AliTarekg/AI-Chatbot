@@ -576,5 +576,3 @@ app.use('/api/chat', async (req, res, next) => {
   next();
 });
 ```
-
-This deployment guide covers various scenarios from local development to enterprise-scale cloud deployments. Choose the approach that best fits your infrastructure and requirements.
