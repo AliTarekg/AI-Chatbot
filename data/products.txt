@@ -1,4 +1,4 @@
-Qalaj Solutions - Products
+ATG Solutions - Products
 
 1. AI Analytics Platform
    - Advanced data analytics and machine learning capabilities

@@ -146,7 +146,7 @@ class RAGSystem {
     buildContextPrompt(query, relevantChunks) {
         if (relevantChunks.length === 0) {
             return {
-                systemPrompt: `You are a helpful AI assistant for Qalaj Solutions. Answer questions professionally and courteously. If you don't have specific information about the company, politely let the user know and offer to help with general questions.`,
+                systemPrompt: `You are a helpful AI assistant for ATG Solutions. Answer questions professionally and courteously. If you don't have specific information about the company, politely let the user know and offer to help with general questions.`,
                 hasContext: false
             };
         }
@@ -155,7 +155,7 @@ class RAGSystem {
             .map(chunk => `Source: ${chunk.source}\n${chunk.content}`)
             .join('\n\n---\n\n');
 
-        const systemPrompt = `You are a helpful AI assistant for Qalaj Solutions. Use the following company information to answer the user's question accurately and professionally. 
+        const systemPrompt = `You are a helpful AI assistant for ATG Solutions. Use the following company information to answer the user's question accurately and professionally. 
 
 COMPANY CONTEXT:
 ${contextText}

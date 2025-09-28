@@ -1,4 +1,4 @@
-Qalaj Solutions - Training Courses
+ATG Solutions - Training Courses
 
 TECHNICAL COURSES
 
@@ -55,13 +55,13 @@ BUSINESS COURSES
 
 CERTIFICATION PROGRAMS
 
-8. Qalaj Certified Developer
+8. ATG Certified Developer
    Duration: 16 weeks
    Price: $3,999
    Includes: Full-stack development + 2 elective specializations
    Certification: Industry-recognized certificate upon completion
 
-9. Qalaj AI Specialist
+9. ATG AI Specialist
    Duration: 12 weeks
    Price: $2,999
    Includes: AI fundamentals + advanced machine learning + capstone project

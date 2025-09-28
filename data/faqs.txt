@@ -1,4 +1,4 @@
-Qalaj Solutions - Frequently Asked Questions
+ATG Solutions - Frequently Asked Questions
 
 Q: What programming languages do you specialize in?
 A: We specialize in JavaScript/Node.js, Python, Java, C#, React, Vue.js, Angular, and various mobile development frameworks including React Native and Flutter.

@@ -1,4 +1,4 @@
-Qalaj Solutions - Company Policies
+ATG Solutions - Company Policies
 
 REFUND POLICY
 - Full refund available within 30 days of service initiation
@@ -29,7 +29,7 @@ CANCELLATION POLICY
 
 INTELLECTUAL PROPERTY POLICY
 - Client retains ownership of their data and existing intellectual property
-- Qalaj retains rights to general methodologies and frameworks
+- ATG retains rights to general methodologies and frameworks
 - Custom code developed for clients belongs to the client upon full payment
 - Open-source components remain under their respective licenses
 
