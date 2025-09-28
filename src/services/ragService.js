@@ -1,7 +1,3 @@
-/**
- * Enhanced RAG System with improved error handling and modular design
- */
-
 const fs = require('fs').promises;
 const path = require('path');
 const { RecursiveCharacterTextSplitter } = require('langchain/text_splitter');
@@ -23,10 +19,6 @@ class RAGSystem {
     };
   }
 
-  /**
-   * Initialize the RAG system
-   * @returns {Promise<void>}
-   */
   async initialize() {
     if (this.isInitialized) {
       logger.debug('RAG system already initialized');
@@ -35,13 +27,10 @@ class RAGSystem {
 
     try {
       logger.info('Initializing RAG system...');
-      
       await this.validateDataPath();
       await this.loadAndProcessDocuments();
-      
       this.isInitialized = true;
       this.stats.lastUpdate = new Date().toISOString();
-      
       logger.info('RAG system initialized successfully', {
         documents: this.stats.documentsLoaded,
         chunks: this.stats.chunksCreated,
@@ -53,10 +42,6 @@ class RAGSystem {
     }
   }
 
-  /**
-   * Validate that data path exists and is readable
-   * @private
-   */
   async validateDataPath() {
     try {
       const stats = await fs.stat(this.dataPath);
@@ -71,10 +56,6 @@ class RAGSystem {
     }
   }
 
-  /**
-   * Load and process all documents in the data directory
-   * @private
-   */
   async loadAndProcessDocuments() {
     try {
       this.documents = [];
@@ -105,11 +86,6 @@ class RAGSystem {
     }
   }
 
-  /**
-   * Process a single file
-   * @param {string} filename - Name of the file to process
-   * @private
-   */
   async processFile(filename) {
     try {
       const filePath = path.join(this.dataPath, filename);
@@ -154,12 +130,6 @@ class RAGSystem {
     }
   }
 
-  /**
-   * Search for relevant context based on query
-   * @param {string} query - Search query
-   * @param {number} topK - Number of top results to return
-   * @returns {Promise<Array>} Array of relevant chunks
-   */
   async searchRelevantContext(query, topK = null) {
     if (!this.isInitialized) {
       await this.initialize();
@@ -198,14 +168,6 @@ class RAGSystem {
     }
   }
 
-  /**
-   * Calculate relevance score for a document
-   * @param {Object} doc - Document to score
-   * @param {Object} keywords - Extracted keywords object
-   * @param {string} originalQuery - Original query text
-   * @returns {number} Relevance score
-   * @private
-   */
   calculateRelevanceScore(doc, keywords, originalQuery) {
     const contentLower = doc.pageContent.toLowerCase();
     const normalizedContent = this.languageUtils.normalizeText(contentLower);
@@ -213,19 +175,16 @@ class RAGSystem {
 
     let score = 0;
 
-    // Keyword matching (primary scoring)
     for (const word of keywords.expanded) {
       const regex = new RegExp(`\\b${word}\\b`, 'gi');
       const matches = (normalizedContent.match(regex) || []).length;
-      score += matches * 2; // Base score for keyword matches
+      score += matches * 2;
     }
 
-    // Exact phrase matching (bonus)
     if (normalizedContent.includes(queryLower)) {
       score += 10;
     }
 
-    // Partial phrase matching
     const queryWords = queryLower.split(/\s+/).filter(w => w.length > 2);
     for (const word of queryWords) {
       if (normalizedContent.includes(word)) {
@@ -233,26 +192,17 @@ class RAGSystem {
       }
     }
 
-    // Language preference (slight bonus for matching language)
     const queryLanguage = this.languageUtils.detectLanguage(originalQuery);
     if (doc.metadata.language === queryLanguage) {
       score += 0.5;
     }
 
-    // Document type relevance
     const typeRelevance = this.getTypeRelevance(doc.metadata.type, keywords);
     score += typeRelevance;
 
     return score;
   }
 
-  /**
-   * Get relevance boost based on document type
-   * @param {string} docType - Document type
-   * @param {Object} keywords - Keywords object
-   * @returns {number} Relevance boost
-   * @private
-   */
   getTypeRelevance(docType, keywords) {
     const typeKeywords = {
       'courses': ['course', 'training', 'دورات', 'تدريب'],
@@ -271,12 +221,6 @@ class RAGSystem {
     return hasRelevantKeywords ? 3 : 0;
   }
 
-  /**
-   * Build context prompt for the AI model
-   * @param {string} query - User query
-   * @param {Array} relevantChunks - Relevant document chunks
-   * @returns {Object} Prompt information
-   */
   buildContextPrompt(query, relevantChunks) {
     const language = this.languageUtils.detectLanguage(query);
     const isArabic = language === 'ar';
@@ -307,12 +251,6 @@ class RAGSystem {
     };
   }
 
-  /**
-   * Get system prompt when no context is available
-   * @param {boolean} isArabic - Whether to use Arabic
-   * @returns {string} System prompt
-   * @private
-   */
   getNoContextPrompt(isArabic) {
     if (isArabic) {
       return `أنت مساعد ذكي لشركة ${config.company.name}. أجب على الأسئلة بطريقة مهنية ومهذبة باللهجة المصرية. 
@@ -323,13 +261,6 @@ class RAGSystem {
     return `You are a helpful AI assistant for ${config.company.name}. Answer questions professionally and courteously. If you don't have specific information about the company, politely let the user know and offer to help with general questions.`;
   }
 
-  /**
-   * Get contextual system prompt
-   * @param {string} contextText - Context from documents
-   * @param {boolean} isArabic - Whether to use Arabic
-   * @returns {string} System prompt
-   * @private
-   */
   getContextualPrompt(contextText, isArabic) {
     if (isArabic) {
       return `أنت مساعد ذكي لشركة ${config.company.name}. استخدم المعلومات التالية للإجابة على سؤال المستخدم بدقة ومهنية باللهجة المصرية.
@@ -359,14 +290,6 @@ Instructions:
 - If asked about pricing or specific details, refer to the exact information provided`;
   }
 
-  /**
-   * Build enhanced user prompt with context
-   * @param {string} query - Original query
-   * @param {string} contextText - Context information
-   * @param {boolean} isArabic - Whether query is in Arabic
-   * @returns {string} Enhanced user prompt
-   * @private
-   */
   buildUserPrompt(query, contextText, isArabic) {
     if (isArabic) {
       return `بناءً على معلومات الشركة المقدمة أعلاه:
@@ -383,10 +306,6 @@ User question: ${query}
 Please answer using the specific company information provided above.`;
   }
 
-  /**
-   * Get system statistics
-   * @returns {Object} System statistics
-   */
   getStats() {
     return {
       ...this.stats,
@@ -396,10 +315,6 @@ Please answer using the specific company information provided above.`;
     };
   }
 
-  /**
-   * Refresh the document cache
-   * @returns {Promise<void>}
-   */
   async refresh() {
     logger.info('Refreshing RAG system...');
     this.isInitialized = false;

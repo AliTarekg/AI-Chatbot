@@ -1,7 +1,3 @@
-/**
- * Chat service that orchestrates RAG and Ollama interactions
- */
-
 const logger = require('../utils/logger');
 const Validator = require('../utils/validator');
 const { ValidationError, AppError } = require('../utils/errors');
@@ -10,14 +6,11 @@ class ChatService {
   constructor(ragService, ollamaService) {
     this.ragService = ragService;
     this.ollamaService = ollamaService;
-    
-    // Simple greeting patterns for fast responses
     this.greetingPatterns = [
       /^(hi|hello|hey|ازيك|اهلا|مرحبا|السلام عليكم)$/i,
       /^(good morning|good evening|صباح الخير|مساء الخير)$/i,
       /^(how are you|ازيك|كيف حالك|إيه الأخبار)$/i
     ];
-    
     this.quickResponses = {
       ar: {
         greeting: "أهلاً وسهلاً! ازيك؟ أنا مساعدك الذكي في شركة  للحلول التقنية. إيه اللي ممكن أساعدك فيه النهارده؟",
@@ -30,19 +23,13 @@ class ChatService {
     };
   }
 
-  /**
-   * Initialize the chat service
-   * @returns {Promise<void>}
-   */
   async initialize() {
     logger.info('Initializing chat service...');
-    
     try {
       await Promise.all([
         this.ragService.initialize(),
         this.ollamaService.initialize()
       ]);
-      
       logger.info('Chat service initialized successfully');
     } catch (error) {
       logger.error('Failed to initialize chat service', { error: error.message });
@@ -50,22 +37,14 @@ class ChatService {
     }
   }
 
-  /**
-   * Check if message is a simple greeting that can be handled quickly
-   * @param {string} message - User message
-   * @returns {Object|null} Quick response if applicable
-   */
   getQuickResponse(message) {
     const trimmedMessage = message.trim().toLowerCase();
     const LanguageUtils = require('../utils/languageUtils');
     const langUtils = new LanguageUtils();
     const language = langUtils.detectLanguage(message);
-    
-    // Check for simple greetings
     for (const pattern of this.greetingPatterns) {
       if (pattern.test(trimmedMessage)) {
         const responses = this.quickResponses[language] || this.quickResponses.en;
-        
         if (trimmedMessage.includes('how are you') || 
             trimmedMessage.includes('ازيك') || 
             trimmedMessage.includes('كيف حالك')) {
@@ -82,7 +61,6 @@ class ChatService {
             isQuickResponse: true
           };
         }
-        
         return {
           response: responses.greeting,
           hasContext: false,
@@ -97,39 +75,28 @@ class ChatService {
         };
       }
     }
-    
     return null;
   }
 
-  /**
-   * Get optimized options for AI generation based on message type
-   * @param {string} message - User message
-   * @param {boolean} hasContext - Whether context was found
-   * @returns {Object} Optimized options
-   */
   getOptimizedOptions(message, hasContext) {
     const messageLength = message.length;
     const isSimpleQuery = messageLength < 50 && !hasContext;
-    
     if (isSimpleQuery) {
       return {
-        num_predict: 50, // Very short responses for simple queries
-        num_ctx: 256,    // Minimal context
+        num_predict: 50,
+        num_ctx: 256,
         temperature: 0.1,
         top_k: 3
       };
     }
-    
     if (hasContext) {
       return {
-        num_predict: 150, // Medium responses for contextual queries
+        num_predict: 150,
         num_ctx: 1024,
         temperature: 0.2,
         top_k: 5
       };
     }
-    
-    // Default for complex queries
     return {
       num_predict: 200,
       num_ctx: 1024,
@@ -138,14 +105,8 @@ class ChatService {
     };
   }
 
-  /**
-   * Process a chat message and generate response
-   * @param {Object} input - Chat input object
-   * @returns {Promise<Object>} Chat response
-   */
   async processMessage(input) {
     try {
-      // Validate input
       const validatedInput = Validator.validateChatInput(input);
       const { message } = validatedInput;
 
@@ -154,7 +115,6 @@ class ChatService {
         preview: message.substring(0, 50) + (message.length > 50 ? '...' : '')
       });
 
-      // Check for quick responses
       const quickResponse = this.getQuickResponse(message);
       if (quickResponse) {
         logger.info('Quick response generated successfully', {
@@ -167,12 +127,9 @@ class ChatService {
         return quickResponse;
       }
 
-      // Search for relevant context
       const relevantChunks = await this.ragService.searchRelevantContext(message);
-      
-      // Build prompts
       const promptInfo = this.ragService.buildContextPrompt(message, relevantChunks);
-      
+
       logger.debug('Context search completed', {
         chunksFound: relevantChunks.length,
         hasContext: promptInfo.hasContext,
@@ -180,7 +137,6 @@ class ChatService {
         sources: promptInfo.sources
       });
 
-      // Generate AI response
       const aiResponse = await this.ollamaService.generateResponse(
         promptInfo.systemPrompt,
         promptInfo.userPrompt
@@ -221,10 +177,6 @@ class ChatService {
     }
   }
 
-  /**
-   * Get service health status
-   * @returns {Promise<Object>} Combined health status
-   */
   async getHealthStatus() {
     try {
       const [ollamaHealth, ragStats] = await Promise.all([
@@ -255,10 +207,6 @@ class ChatService {
     }
   }
 
-  /**
-   * Refresh services (useful for reloading data)
-   * @returns {Promise<void>}
-   */
   async refresh() {
     logger.info('Refreshing chat service...');
     

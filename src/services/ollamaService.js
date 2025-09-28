@@ -1,7 +1,3 @@
-/**
- * Ollama service for AI model interactions
- */
-
 const { Ollama } = require('ollama');
 const { config } = require('../config');
 const logger = require('../utils/logger');
@@ -16,34 +12,23 @@ class OllamaService {
     this.availableModels = [];
   }
 
-  /**
-   * Initialize the Ollama service
-   * @returns {Promise<void>}
-   */
   async initialize() {
     try {
       logger.info('Initializing Ollama service...');
-      
       await this.checkConnection();
       await this.loadAvailableModels();
-      
       this.isConnected = true;
       logger.info('Ollama service initialized successfully', {
         baseUrl: config.ollama.baseUrl,
         model: config.ollama.model,
         modelsAvailable: this.availableModels.length
       });
-      
     } catch (error) {
       logger.error('Failed to initialize Ollama service', { error: error.message });
       throw new OllamaError(`Ollama initialization failed: ${error.message}`, error);
     }
   }
 
-  /**
-   * Check connection to Ollama server
-   * @private
-   */
   async checkConnection() {
     try {
       await this.client.list();
@@ -56,10 +41,6 @@ class OllamaService {
     }
   }
 
-  /**
-   * Load available models from Ollama
-   * @private
-   */
   async loadAvailableModels() {
     try {
       const response = await this.client.list();
@@ -80,13 +61,6 @@ class OllamaService {
     }
   }
 
-  /**
-   * Generate chat response
-   * @param {string} systemPrompt - System prompt
-   * @param {string} userPrompt - User prompt/message
-   * @param {Object} options - Generation options
-   * @returns {Promise<Object>} Chat response
-   */
   async generateResponse(systemPrompt, userPrompt, options = {}) {
     if (!this.isConnected) {
       await this.initialize();
@@ -146,20 +120,11 @@ class OllamaService {
     }
   }
 
-  /**
-   * Check if a specific model is available
-   * @param {string} modelName - Model name to check
-   * @returns {boolean} True if model is available
-   */
   isModelAvailable(modelName = null) {
     const targetModel = modelName || config.ollama.model;
     return this.availableModels.some(model => model.includes(targetModel));
   }
 
-  /**
-   * Get service health status
-   * @returns {Promise<Object>} Health status
-   */
   async getHealthStatus() {
     try {
       if (!this.isConnected) {
@@ -190,10 +155,6 @@ class OllamaService {
     }
   }
 
-  /**
-   * Get available models
-   * @returns {Array} List of available model names
-   */
   getAvailableModels() {
     return [...this.availableModels];
   }
