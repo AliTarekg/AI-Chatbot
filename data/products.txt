@@ -1,0 +1,31 @@
+Qalaj Solutions - Products
+
+1. AI Analytics Platform
+   - Advanced data analytics and machine learning capabilities
+   - Real-time insights and predictive modeling
+   - Price: Starting at $5,000/month
+   - Features: Custom dashboards, automated reporting, AI-powered recommendations
+
+2. CloudSync Enterprise
+   - Cloud migration and management solution
+   - Multi-cloud support (AWS, Azure, Google Cloud)
+   - Price: Starting at $2,500/month
+   - Features: Automated backups, security monitoring, cost optimization
+
+3. SmartChat Pro
+   - AI-powered customer service chatbot
+   - Natural language processing and understanding
+   - Price: Starting at $1,200/month
+   - Features: 24/7 support, multilingual, integration with CRM systems
+
+4. DataGuard Security Suite
+   - Comprehensive cybersecurity solution
+   - Advanced threat detection and prevention
+   - Price: Starting at $3,800/month
+   - Features: Real-time monitoring, incident response, compliance reporting
+
+5. WorkFlow Optimizer
+   - Business process automation platform
+   - Custom workflow design and implementation
+   - Price: Starting at $1,800/month
+   - Features: Drag-and-drop interface, API integrations, performance analytics

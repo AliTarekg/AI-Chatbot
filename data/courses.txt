@@ -1,0 +1,82 @@
+Qalaj Solutions - Training Courses
+
+TECHNICAL COURSES
+
+1. Full-Stack Web Development Bootcamp
+   Duration: 12 weeks (Part-time) / 6 weeks (Full-time)
+   Price: $2,999 (Part-time) / $4,999 (Full-time)
+   Topics: HTML, CSS, JavaScript, React, Node.js, MongoDB, Git
+   Schedule: Weekday evenings or intensive daytime sessions
+   Prerequisites: Basic computer skills
+
+2. AI and Machine Learning Fundamentals
+   Duration: 8 weeks
+   Price: $1,899
+   Topics: Python, scikit-learn, TensorFlow, data preprocessing, model evaluation
+   Schedule: Weekend sessions (Saturdays)
+   Prerequisites: Basic programming experience
+
+3. Cloud Computing with AWS
+   Duration: 6 weeks
+   Price: $1,499
+   Topics: EC2, S3, RDS, Lambda, CloudFormation, security best practices
+   Schedule: Weekday evenings
+   Prerequisites: Basic understanding of web technologies
+
+4. Cybersecurity Essentials
+   Duration: 10 weeks
+   Price: $2,199
+   Topics: Network security, ethical hacking, incident response, compliance
+   Schedule: Mixed online and in-person sessions
+   Prerequisites: IT background recommended
+
+5. Data Analytics with Python
+   Duration: 8 weeks
+   Price: $1,699
+   Topics: Pandas, NumPy, Matplotlib, data visualization, statistical analysis
+   Schedule: Evening classes, twice per week
+   Prerequisites: Basic Python knowledge
+
+BUSINESS COURSES
+
+6. Digital Transformation Leadership
+   Duration: 4 weeks
+   Price: $899
+   Topics: Change management, technology strategy, ROI measurement
+   Schedule: Executive sessions (flexible timing)
+   Prerequisites: Management experience
+
+7. Agile Project Management
+   Duration: 3 weeks
+   Price: $699
+   Topics: Scrum, Kanban, sprint planning, stakeholder management
+   Schedule: Weekend workshops
+   Prerequisites: None
+
+CERTIFICATION PROGRAMS
+
+8. Qalaj Certified Developer
+   Duration: 16 weeks
+   Price: $3,999
+   Includes: Full-stack development + 2 elective specializations
+   Certification: Industry-recognized certificate upon completion
+
+9. Qalaj AI Specialist
+   Duration: 12 weeks
+   Price: $2,999
+   Includes: AI fundamentals + advanced machine learning + capstone project
+   Certification: AI specialist certificate with portfolio
+
+CORPORATE TRAINING
+- Custom training programs for teams of 5+ people
+- On-site or remote delivery options
+- Tailored curriculum based on company needs
+- Group discounts: 10% off for 5-9 participants, 20% off for 10+ participants
+
+COURSE FEATURES
+- Small class sizes (max 15 students)
+- Hands-on projects and real-world applications
+- Industry expert instructors
+- Career placement assistance
+- Lifetime access to course materials
+- Alumni network access

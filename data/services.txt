@@ -1,0 +1,50 @@
+Qalaj Solutions - Services
+
+1. Custom Software Development
+   - Full-stack web application development
+   - Mobile app development (iOS and Android)
+   - Desktop application development
+   - API development and integration
+   - Price: $150-200/hour
+
+2. AI & Machine Learning Consulting
+   - AI strategy and roadmap development
+   - Machine learning model development and deployment
+   - Natural language processing solutions
+   - Computer vision applications
+   - Price: $200-250/hour
+
+3. Cloud Migration Services
+   - Cloud assessment and planning
+   - Application migration to cloud platforms
+   - Infrastructure setup and optimization
+   - Cloud cost management
+   - Price: Project-based, starting at $25,000
+
+4. Digital Transformation Consulting
+   - Business process analysis and optimization
+   - Technology stack evaluation and recommendations
+   - Change management and training
+   - Implementation support
+   - Price: $175-225/hour
+
+5. Data Analytics & Business Intelligence
+   - Data warehouse design and implementation
+   - Business intelligence dashboard creation
+   - Data visualization and reporting
+   - Predictive analytics solutions
+   - Price: $160-210/hour
+
+6. Cybersecurity Services
+   - Security audits and assessments
+   - Penetration testing
+   - Security policy development
+   - Incident response and recovery
+   - Price: $180-230/hour
+
+7. 24/7 Technical Support
+   - Round-the-clock technical assistance
+   - System monitoring and maintenance
+   - Emergency response services
+   - Regular health checks and updates
+   - Price: Starting at $500/month per system

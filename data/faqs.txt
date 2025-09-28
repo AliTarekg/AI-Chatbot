@@ -1,0 +1,31 @@
+Qalaj Solutions - Frequently Asked Questions
+
+Q: What programming languages do you specialize in?
+A: We specialize in JavaScript/Node.js, Python, Java, C#, React, Vue.js, Angular, and various mobile development frameworks including React Native and Flutter.
+
+Q: How long does a typical project take?
+A: Project timelines vary based on complexity. Small applications: 2-4 weeks, Medium applications: 2-4 months, Large enterprise solutions: 6-12 months. We provide detailed timelines during the planning phase.
+
+Q: Do you offer maintenance and support after project completion?
+A: Yes, we offer comprehensive maintenance packages including bug fixes, updates, security patches, and feature enhancements. Our support plans start at $500/month.
+
+Q: Can you work with our existing team?
+A: Absolutely! We offer staff augmentation services and can seamlessly integrate with your existing development team. We're experienced in remote collaboration and agile methodologies.
+
+Q: What industries do you have experience in?
+A: We have extensive experience in healthcare, finance, e-commerce, manufacturing, education, and retail sectors. Our team understands industry-specific compliance requirements and best practices.
+
+Q: Do you provide training for our staff?
+A: Yes, we offer comprehensive training programs for the solutions we develop. Training includes technical documentation, video tutorials, and hands-on sessions with your team.
+
+Q: What is your approach to data security?
+A: We follow industry best practices including encryption, secure coding standards, regular security audits, and compliance with regulations like GDPR, HIPAA, and SOC 2.
+
+Q: Can you integrate with our existing systems?
+A: Yes, we specialize in system integration and API development. We can connect new solutions with your existing CRM, ERP, database systems, and third-party services.
+
+Q: What payment methods do you accept?
+A: We accept bank transfers, credit cards, and ACH payments. For enterprise clients, we can accommodate purchase orders and custom invoicing arrangements.
+
+Q: Do you offer free consultations?
+A: Yes, we provide a free 1-hour consultation to discuss your project requirements, timeline, and budget. This helps us provide accurate project estimates.

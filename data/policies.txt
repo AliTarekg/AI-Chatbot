@@ -1,0 +1,40 @@
+Qalaj Solutions - Company Policies
+
+REFUND POLICY
+- Full refund available within 30 days of service initiation
+- Partial refunds calculated based on services rendered
+- Custom development projects: 50% refund if cancelled within first 2 weeks
+- Monthly subscriptions: Prorated refunds available
+- Refund processing time: 5-10 business days
+
+PRIVACY POLICY
+- We collect minimal personal information necessary for service delivery
+- Client data is encrypted and stored securely
+- We never share client information with third parties without consent
+- Data retention period: 7 years after contract termination
+- Clients can request data deletion at any time
+
+TERMS OF SERVICE
+- Service agreements are binding for the specified contract period
+- Changes to services require written approval from both parties
+- Payment terms: Net 30 days from invoice date
+- Late payment fee: 1.5% per month on overdue amounts
+- Force majeure clause applies to unforeseeable circumstances
+
+CANCELLATION POLICY
+- 30-day written notice required for service cancellation
+- Ongoing projects will be completed or transitioned as agreed
+- No cancellation fees for monthly subscriptions
+- Annual contracts: Early termination fee may apply (25% of remaining balance)
+
+INTELLECTUAL PROPERTY POLICY
+- Client retains ownership of their data and existing intellectual property
+- Qalaj retains rights to general methodologies and frameworks
+- Custom code developed for clients belongs to the client upon full payment
+- Open-source components remain under their respective licenses
+
+SUPPORT POLICY
+- Standard support: Business hours (9 AM - 6 PM PST, Monday-Friday)
+- Premium support: 24/7 availability with 2-hour response time
+- Emergency support: Available for critical system failures
+- Support ticket system for non-urgent issues
