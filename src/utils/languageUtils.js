@@ -3,33 +3,50 @@ class LanguageUtils {
     this.arabicKeywordMappings = {
       'أسعار': ['price', 'pricing', 'cost', 'fee', 'rates'],
       'تكلفة': ['cost', 'price', 'expense', 'fee'],
+      'سعر': ['price', 'cost', 'pricing'],
       'رسوم': ['fees', 'charges', 'cost', 'price'],
       'مجاني': ['free', 'complimentary', 'no-cost'],
       'دورات': ['course', 'courses', 'training', 'bootcamp', 'program'],
+      'دورة': ['course', 'training', 'program'],
       'كورسات': ['course', 'courses', 'training', 'bootcamp'],
+      'كورس': ['course', 'training'],
       'تدريب': ['training', 'course', 'courses', 'bootcamp', 'workshop'],
       'برامج': ['program', 'programs', 'courses', 'training'],
+      'برنامج': ['program', 'course', 'training'],
       'شهادة': ['certificate', 'certification', 'diploma'],
       'خدمات': ['service', 'services', 'consulting', 'support'],
+      'خدمة': ['service', 'consulting'],
       'منتجات': ['product', 'products', 'software', 'solution'],
+      'منتج': ['product', 'software'],
       'حلول': ['solution', 'solutions', 'services'],
+      'حل': ['solution', 'service'],
       'استشارات': ['consulting', 'consultation', 'advisory'],
+      'استشارة': ['consulting', 'consultation'],
       'اتصال': ['contact', 'contacts', 'phone', 'call'],
       'تواصل': ['contact', 'communication', 'reach'],
       'هاتف': ['phone', 'telephone', 'number'],
+      'تليفون': ['phone', 'telephone'],
+      'رقم': ['number', 'phone'],
       'إيميل': ['email', 'mail', 'contact'],
+      'بريد': ['email', 'mail'],
       'عنوان': ['address', 'location', 'office'],
       'موقع': ['location', 'address', 'site', 'office'],
+      'مكان': ['location', 'place', 'address'],
       'سياسات': ['policy', 'policies', 'terms', 'conditions'],
+      'سياسة': ['policy', 'terms'],
       'قوانين': ['rules', 'policies', 'regulations', 'terms'],
+      'قانون': ['rule', 'policy', 'regulation'],
       'شروط': ['terms', 'conditions', 'requirements'],
+      'شرط': ['term', 'condition'],
       'أسئلة': ['faq', 'faqs', 'question', 'questions', 'ask'],
       'استفسار': ['inquiry', 'question', 'ask', 'faq'],
+      'استفسارات': ['inquiries', 'questions', 'faqs'],
       'سؤال': ['question', 'ask', 'inquiry'],
       'شركة': ['company', 'overview', 'about', 'organization'],
       'مؤسسة': ['company', 'organization', 'institution'],
       'فريق': ['team', 'employees', 'staff', 'personnel'],
       'موظفين': ['employees', 'staff', 'team', 'workers'],
+      'موظف': ['employee', 'staff'],
       'وقت': ['time', 'duration', 'schedule'],
       'مدة': ['duration', 'time', 'period'],
       'جدول': ['schedule', 'timetable', 'calendar'],
@@ -37,9 +54,22 @@ class LanguageUtils {
       'معلومات': ['information', 'details', 'data'],
       'تفاصيل': ['details', 'information', 'specifics'],
       'كيف': ['how', 'method', 'way'],
+      'ازاي': ['how', 'method', 'way'],
+      'إزاي': ['how', 'method', 'way'],
       'ماذا': ['what', 'which'],
+      'ايه': ['what', 'which'],
+      'إيه': ['what', 'which'],
       'متى': ['when', 'time', 'schedule'],
-      'أين': ['where', 'location', 'place']
+      'امتى': ['when', 'time'],
+      'إمتى': ['when', 'time'],
+      'أين': ['where', 'location', 'place'],
+      'فين': ['where', 'location'],
+      'عايز': ['want', 'need', 'looking'],
+      'عاوز': ['want', 'need', 'looking'],
+      'محتاج': ['need', 'want', 'require'],
+      'ممكن': ['can', 'possible', 'may'],
+      'ازيك': ['how are you', 'greeting', 'hello'],
+      'إزيك': ['how are you', 'greeting', 'hello']
     };
     this.arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
   }
@@ -89,19 +119,14 @@ class LanguageUtils {
       expanded: expandedWords,
       language: this.detectLanguage(query)
     };
-  }
-
-  getEgyptianToneInstructions() {
-    return `
-    When responding in Arabic, use Egyptian dialect and tone with these characteristics:
-    - Use "إزيك" or "أهلاً وسهلاً" for greetings
-    - Use "إيه" instead of "ما" for questions
-    - Use "عايز/عاوز" instead of "أريد"
-    - Use friendly, conversational tone
-    - Include common Egyptian expressions like "إن شاء الله", "ربنا يكرمك"
-    - Be respectful and professional while maintaining warmth
-    - Use "حضرتك" for formal address
-    `;
+  }  getEgyptianToneInstructions() {
+    return `استخدم اللهجة المصرية الودية والمهنية:
+- التحيات: "ازيك"، "أهلاً وسهلاً"، "إزيك" 
+- الأسئلة: "إيه" بدل "ما"، "ازاي" بدل "كيف"، "امتى" بدل "متى"، "فين" بدل "أين"
+- الطلبات: "عايز/عاوز" بدل "أريد"، "ممكن" للطلب المهذب
+- التعبيرات: "إن شاء الله"، "ربنا يكرمك"، "الحمد لله"
+- المخاطبة: "حضرتك" للاحترام، استخدم أسلوب ودود ومهني معاً
+- كن واضح ومباشر مع الحفاظ على الود والاحترافية`;
   }
 }
 

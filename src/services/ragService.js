@@ -239,7 +239,7 @@ class RAGSystem {
       .join('\n\n---\n\n');
 
     const systemPrompt = this.getContextualPrompt(contextText, isArabic);
-    const userPrompt = this.buildUserPrompt(query, contextText, isArabic);
+    const userPrompt = query;
 
     return {
       systemPrompt,
@@ -253,57 +253,61 @@ class RAGSystem {
 
   getNoContextPrompt(isArabic) {
     if (isArabic) {
-      return `أنت مساعد ذكي لشركة ${config.company.name}. أجب على الأسئلة بطريقة مهنية ومهذبة باللهجة المصرية. 
-      ${this.languageUtils.getEgyptianToneInstructions()}
-      إذا لم تكن لديك معلومات محددة عن الشركة، اعتذر بلطف وقدم المساعدة العامة.`;
+      const instructions = this.languageUtils.getEgyptianToneInstructions();
+      return `أنت مساعد ذكي متقدم لشركة ${config.company.name} في مجال ${config.company.domain}. أنت خبير في التكنولوجيا والحلول التقنية ولديك معرفة واسعة.
+${instructions}
+
+المهام:
+- أجب على جميع الأسئلة بذكاء ومعرفة، حتى لو لم تكن متعلقة مباشرة بالشركة
+- إذا السؤال عن الشركة وليس عندك معلومات محددة، اعتذر بلطف
+- إذا السؤال تقني أو عام، أجب بخبرة واحترافية كاملة
+- قدم معلومات مفيدة وقيمة في كل إجابة
+- كن واضح ومختصر ومفيد
+- استخدم خبرتك العامة لتقديم أفضل إجابة ممكنة`;
     }
 
-    return `You are a helpful AI assistant for ${config.company.name}. Answer questions professionally and courteously. If you don't have specific information about the company, politely let the user know and offer to help with general questions.`;
+    return `You are an advanced AI assistant for ${config.company.name} in the ${config.company.domain} domain. You are an expert in technology and technical solutions with broad knowledge.
+
+Tasks:
+- Answer all questions intelligently and knowledgeably, even if not directly related to the company
+- If asked about specific company information you don't have, politely acknowledge this
+- For technical or general questions, answer with full expertise and professionalism
+- Provide useful and valuable information in every response
+- Be clear, concise, and helpful
+- Use your general knowledge to provide the best possible answer`;
   }
 
   getContextualPrompt(contextText, isArabic) {
     if (isArabic) {
-      return `أنت مساعد ذكي لشركة ${config.company.name}. استخدم المعلومات التالية للإجابة على سؤال المستخدم بدقة ومهنية باللهجة المصرية.
+      const instructions = this.languageUtils.getEgyptianToneInstructions();
+      return `أنت مساعد ذكي متقدم وخبير لشركة ${config.company.name}. لديك معلومات الشركة التالية ومعرفة واسعة في التكنولوجيا.
 
 معلومات الشركة:
 ${contextText}
 
 تعليمات:
-- أجب بناءً على المعلومات المقدمة بشكل أساسي
+- استخدم معلومات الشركة المقدمة كمرجع أساسي
+- إذا السؤال يحتاج معلومات إضافية غير موجودة في السياق، استخدم معرفتك العامة
+- اجمع بين معلومات الشركة ومعرفتك لتقديم إجابة كاملة ومفيدة
 - كن مهنياً ومفيداً ومختصراً
-- استخدم اللهجة المصرية الودودة والمهنية
-${this.languageUtils.getEgyptianToneInstructions()}
-- إذا لم يكن بإمكانك الإجابة بالكامل من المعلومات المتاحة، اعترف بذلك وقدم ما تستطيع
-- حافظ على نبرة ودودة ومهنية`;
+${instructions}
+- قدم إجابة شاملة حتى لو احتاج الأمر معلومات عامة خارج السياق
+- إذا معلومات الشركة غير كافية، أكمل بمعرفتك العامة بوضوح`;
     }
 
-    return `You are a helpful AI assistant for ${config.company.name}. Use the following company information to answer the user's question accurately and professionally.
+    return `You are an advanced expert AI assistant for ${config.company.name}. You have the following company information and broad knowledge in technology.
 
 COMPANY CONTEXT:
 ${contextText}
 
 Instructions:
-- Answer based primarily on the provided company information
+- Use the provided company information as your primary reference
+- If the question needs additional information not in context, use your general knowledge
+- Combine company information with your knowledge to provide complete and useful answers
 - Be professional, helpful, and concise
-- If the question cannot be fully answered with the provided context, acknowledge this and provide what information you can
-- Always maintain a friendly, professional tone
-- If asked about pricing or specific details, refer to the exact information provided`;
-  }
-
-  buildUserPrompt(query, contextText, isArabic) {
-    if (isArabic) {
-      return `بناءً على معلومات الشركة المقدمة أعلاه:
-
-سؤال المستخدم: ${query}
-
-يرجى الإجابة باستخدام المعلومات المحددة للشركة المقدمة أعلاه.`;
-    }
-
-    return `Based on the company information provided above:
-
-User question: ${query}
-
-Please answer using the specific company information provided above.`;
+- Provide comprehensive answers even if it requires general knowledge beyond the context
+- If company information is insufficient, supplement with your general knowledge clearly
+- Always maintain a friendly, professional tone`;
   }
 
   getStats() {

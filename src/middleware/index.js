@@ -5,24 +5,19 @@ const requestLogger = (req, res, next) => {
   const startTime = Date.now();
   const { method, url, ip } = req;
   
-  logger.debug('Incoming request', {
-    method,
-    url,
-    ip,
-    userAgent: req.get('user-agent')
-  });
-
   res.on('finish', () => {
     const duration = Date.now() - startTime;
     const { statusCode } = res;
     
-    const logLevel = statusCode >= 400 ? 'warn' : 'debug';
-    logger[logLevel]('Request completed', {
-      method,
-      url,
-      statusCode,
-      duration: `${duration}ms`
-    });
+    if (statusCode >= 400 || duration > 1000) {
+      const logLevel = statusCode >= 400 ? 'warn' : 'info';
+      logger[logLevel]('Request completed', {
+        method,
+        url,
+        statusCode,
+        duration: `${duration}ms`
+      });
+    }
   });
 
   next();

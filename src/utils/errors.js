@@ -1,7 +1,3 @@
-/**
- * Custom error classes for better error handling
- */
-
 class AppError extends Error {
   constructor(message, statusCode = 500, code = 'INTERNAL_ERROR') {
     super(message);
@@ -9,7 +5,6 @@ class AppError extends Error {
     this.statusCode = statusCode;
     this.code = code;
     this.isOperational = true;
-    
     Error.captureStackTrace(this, this.constructor);
   }
 }
